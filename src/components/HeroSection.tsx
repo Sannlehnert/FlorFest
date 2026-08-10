@@ -1,0 +1,165 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { invitation } from '../data/invitation';
+import DiscoBall from './DiscoBall';
+import SparkleSystem from './SparkleSystem';
+import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
+
+const HeroSection: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const targetDate = new Date(
+      invitation.year,
+      getMonthIndex(invitation.month),
+      invitation.day,
+      20, // 20:30 hs
+      30,
+      0
+    );
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  function getMonthIndex(monthName: string): number {
+    const months: Record<string, number> = {
+      enero: 0,
+      febrero: 1,
+      marzo: 2,
+      abril: 3,
+      mayo: 4,
+      junio: 5,
+      julio: 6,
+      agosto: 7,
+      septiembre: 8,
+      octubre: 9,
+      noviembre: 10,
+      diciembre: 11,
+    };
+    return months[monthName.toLowerCase()] ?? 0;
+  }
+
+  const containerVariants = createStaggerContainer(0.08, 0.1);
+
+  return (
+    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-noise opacity-20" />
+        <div className="absolute inset-0 bg-ambient-light" />
+        <div className="absolute inset-0 bg-depth" />
+      </div>
+
+      <div className="absolute -left-16 sm:-left-20 md:-left-32 top-1/2 -translate-y-1/2 pointer-events-none">
+        <DiscoBall className="w-40 sm:w-56 md:w-104" opacity={0.15} duration={50} />
+      </div>
+      <div className="absolute -right-12 sm:-right-16 md:-right-24 bottom-1/3 pointer-events-none">
+        <DiscoBall className="w-32 sm:w-40 md:w-56" opacity={0.10} duration={60} />
+      </div>
+
+      <SparkleSystem count={3} reflections={1} className="opacity-50" />
+
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-48 sm:w-64 h-48 sm:h-64 rounded-full border border-silver-dim opacity-20"
+          animate={{ scale: [1, 1.02, 1], opacity: [0.15, 0.25, 0.15] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariants}
+        className="relative z-10 container-invitation"
+      >
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
+          <div className="flex-1 content-left">
+            <motion.div variants={fadeInUp} className="mb-2">
+              <span className="title-section text-text-muted">Celebramos</span>
+            </motion.div>
+            <motion.h1 variants={scaleIn} className="script-hero text-left leading-[0.9] tracking-tight">
+              {invitation.fullName}
+            </motion.h1>
+            <motion.div variants={fadeInUp} className="mt-3 flex items-center gap-3 sm:gap-4">
+              <span className="w-8 sm:w-12 h-px bg-line" />
+              <span className="title-section text-text-secondary">{invitation.eventName}</span>
+              <span className="w-8 sm:w-12 h-px bg-line" />
+            </motion.div>
+            <motion.p variants={fadeInUp} className="body-small text-text-muted mt-3 max-w-md">
+              Una noche de brillo, música y celebración
+            </motion.p>
+          </div>
+
+          <div className="flex-1 content-right md:mt-8">
+            <motion.div variants={fadeInUp} className="text-right">
+              <p className="body-large text-text-secondary">
+                {invitation.dayOfWeek} {invitation.day}
+              </p>
+              <p className="title-display-small text-text-primary mt-0">
+                {invitation.month}
+              </p>
+              <p className="body text-text-muted">{invitation.year}</p>
+              <p className="body-small text-text-muted mt-1">{invitation.time}</p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex gap-4 sm:gap-6 md:gap-8 justify-end flex-wrap">
+              <div className="text-center">
+                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
+                  {String(timeLeft.days).padStart(2, '0')}
+                </span>
+                <p className="body-tiny mt-1 text-text-muted">Días</p>
+              </div>
+              <div className="text-center">
+                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
+                  {String(timeLeft.hours).padStart(2, '0')}
+                </span>
+                <p className="body-tiny mt-1 text-text-muted">Horas</p>
+              </div>
+              <div className="text-center">
+                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
+                  {String(timeLeft.minutes).padStart(2, '0')}
+                </span>
+                <p className="body-tiny mt-1 text-text-muted">Min</p>
+              </div>
+              <div className="text-center">
+                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
+                  {String(timeLeft.seconds).padStart(2, '0')}
+                </span>
+                <p className="body-tiny mt-1 text-text-muted">Seg</p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex justify-end">
+              <div className="w-12 sm:w-16 h-px bg-line" />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default HeroSection;
