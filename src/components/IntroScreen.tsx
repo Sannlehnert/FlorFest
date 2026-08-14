@@ -42,7 +42,6 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
       className="fixed inset-0 z-50 flex items-center justify-center bg-background overflow-hidden"
       style={{ touchAction: 'manipulation' }}
     >
-      {/* Fondo atmosférico */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -54,7 +53,6 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         <div className="absolute inset-0 bg-depth" />
       </motion.div>
 
-      {/* Bolas disco */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +61,11 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         aria-hidden="true"
         role="presentation"
       >
-        <DiscoBall className="w-56 sm:w-72 md:w-lg" opacity={0.15} duration={45} />
+        <DiscoBall
+          className="w-40 sm:w-56 md:w-72 lg:w-lg"
+          opacity={0.15}
+          duration={45}
+        />
       </motion.div>
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -73,10 +75,13 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         aria-hidden="true"
         role="presentation"
       >
-        <DiscoBall className="w-32 sm:w-40 md:w-56" opacity={0.08} duration={55} />
+        <DiscoBall
+          className="w-24 sm:w-32 md:w-40"
+          opacity={0.08}
+          duration={55}
+        />
       </motion.div>
 
-      {/* Destellos */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -88,7 +93,6 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         <SparkleSystem count={6} reflections={3} className="opacity-70" />
       </motion.div>
 
-      {/* Elementos decorativos */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -111,12 +115,11 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         <div className="absolute bottom-0 left-0 w-1/4 h-px bg-line transform -rotate-6 origin-bottom-left" />
       </motion.div>
 
-      {/* Contenido principal */}
       <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section">It's my birthday</span>
+              <span className="title-section text-silver">It's my birthday</span>
             </motion.div>
             <motion.h1
               variants={scaleIn}
@@ -131,7 +134,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
               className="mt-3 flex items-center gap-3 sm:gap-4"
             >
               <span className="w-8 sm:w-12 h-px bg-line" />
-              <span className="title-section text-text-secondary">{invitation.eventName}</span>
+              <span className="title-section text-silver">{invitation.eventName}</span>
               <span className="w-8 sm:w-12 h-px bg-line" />
             </motion.div>
           </div>

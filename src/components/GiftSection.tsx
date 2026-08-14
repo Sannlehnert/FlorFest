@@ -4,6 +4,7 @@ import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
+import giftImage from '/images/gifts/gif-box-illustration.png';
 
 const GiftSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -29,10 +30,26 @@ const GiftSection: React.FC = () => {
       </div>
 
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-40 sm:w-48 md:w-104" opacity={0.10} duration={55} />
+        <DiscoBall
+          className="w-32 sm:w-40 md:w-56 lg:w-104"
+          opacity={0.10}
+          duration={55}
+        />
       </div>
       <div className="absolute -left-12 sm:-left-16 md:-left-24 bottom-1/4 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-28 sm:w-32 md:w-48" opacity={0.06} duration={65} />
+        <DiscoBall
+          className="w-24 sm:w-28 md:w-36"
+          opacity={0.06}
+          duration={65}
+        />
+      </div>
+
+      {/* ─── DESTELLO METÁLICO ─── */}
+      <div className="absolute top-8 right-8 sm:top-12 sm:right-12 pointer-events-none opacity-15" aria-hidden="true" role="presentation">
+        <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" strokeDasharray="2 2" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
       </div>
 
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" role="presentation">
@@ -55,22 +72,14 @@ const GiftSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-text-muted">Regalo</span>
+              <span className="title-section text-silver">Regalo</span>
             </motion.div>
 
-            {/* Mensaje principal del regalo */}
-            <motion.p
-              variants={scaleIn}
-              className="body-large text-text-primary mt-2"
-            >
+            <motion.p variants={scaleIn} className="body-large text-text-primary mt-2">
               El mejor regalo es tu presencia
             </motion.p>
 
-            {/* Mensaje secundario con el alias */}
-            <motion.p
-              variants={fadeInUp}
-              className="body-small text-text-muted mt-2"
-            >
+            <motion.p variants={fadeInUp} className="body-small text-text-muted mt-2">
               {invitation.giftMessage}
             </motion.p>
 
@@ -79,10 +88,23 @@ const GiftSection: React.FC = () => {
                 whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.05)' }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleCopyAlias}
-                className="px-4 sm:px-6 py-3 min-h-11 border border-border-button rounded-full text-text-primary body-semibold transition-all duration-200 touch-manipulation focus:outline-none focus:ring-2 focus:ring-silver-dim focus:ring-offset-2 focus:ring-offset-background w-full sm:w-auto"
+                className="px-4 sm:px-6 py-3 min-h-11 border border-border-button rounded-full text-text-primary body-semibold transition-all duration-200 touch-manipulation focus:outline-none focus:ring-2 focus:ring-silver-dim focus:ring-offset-2 focus:ring-offset-background w-full sm:w-auto inline-flex items-center justify-center gap-2"
                 aria-label="Copiar alias al portapapeles"
               >
-                {invitation.giftAlias}
+                <span>{invitation.giftAlias}</span>
+                <svg
+                  className="w-4 h-4 text-silver-dim shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
                 <AnimatePresence>
                   {copied && (
                     <motion.span
@@ -100,44 +122,21 @@ const GiftSection: React.FC = () => {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mt-6 flex items-center gap-3 sm:gap-4">
-              <span className="w-8 sm:w-12 h-px bg-line" />
+              <span className="w-8 sm:w-12 h-px bg-silver-dim" />
               <span className="body-tiny text-text-muted">CON ALEGRÍA · CON AMOR · CON PRESENCIA</span>
-              <span className="w-8 sm:w-12 h-px bg-line" />
+              <span className="w-8 sm:w-12 h-px bg-silver-dim" />
             </motion.div>
           </div>
 
           <motion.div variants={scaleIn} className="flex-1 flex justify-center items-center mt-6 md:mt-0">
             <div className="w-full max-w-xs aspect-square flex items-center justify-center relative">
-              <svg
-                className="w-3/4 h-3/4 text-silver-dim opacity-60"
-                viewBox="0 0 200 200"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+              <img
+                src={giftImage}
+                alt="Regalo decorativo"
+                className="w-full h-full object-contain opacity-80"
+                loading="lazy"
                 aria-hidden="true"
-                role="presentation"
-              >
-                <rect x="40" y="80" width="120" height="90" rx="4" stroke="currentColor" fill="none" />
-                <path d="M40 80 L100 60 L160 80" stroke="currentColor" fill="none" />
-                <path d="M100 60 L100 170" stroke="currentColor" fill="none" />
-                <path d="M80 120 Q100 100 120 120" stroke="currentColor" fill="none" />
-                <path d="M80 140 Q100 160 120 140" stroke="currentColor" fill="none" />
-                <path d="M100 60 Q80 40 70 50 Q60 60 80 70 Q100 80 100 60" stroke="currentColor" fill="none" />
-                <path d="M100 60 Q120 40 130 50 Q140 60 120 70 Q100 80 100 60" stroke="currentColor" fill="none" />
-                <circle cx="100" cy="125" r="3" stroke="currentColor" fill="none" opacity="0.3" />
-                <circle cx="100" cy="125" r="1.5" fill="currentColor" opacity="0.2" />
-                <path d="M60 95 L80 95" stroke="currentColor" fill="none" opacity="0.2" strokeDasharray="2 2" />
-                <path d="M120 95 L140 95" stroke="currentColor" fill="none" opacity="0.2" strokeDasharray="2 2" />
-                <path d="M60 145 L80 145" stroke="currentColor" fill="none" opacity="0.2" strokeDasharray="2 2" />
-                <path d="M120 145 L140 145" stroke="currentColor" fill="none" opacity="0.2" strokeDasharray="2 2" />
-                <circle cx="50" cy="90" r="1" fill="currentColor" opacity="0.3" />
-                <circle cx="150" cy="140" r="1" fill="currentColor" opacity="0.3" />
-                <circle cx="70" cy="170" r="1" fill="currentColor" opacity="0.2" />
-                <circle cx="130" cy="70" r="1" fill="currentColor" opacity="0.2" />
-                <path d="M20 130 Q100 180 180 130" stroke="currentColor" fill="none" opacity="0.1" strokeDasharray="4 4" />
-              </svg>
+              />
               <div className="absolute top-0 right-0 w-6 sm:w-8 h-px bg-line" />
               <div className="absolute bottom-0 left-0 w-6 sm:w-8 h-px bg-line" />
             </div>

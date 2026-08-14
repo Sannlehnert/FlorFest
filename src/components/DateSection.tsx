@@ -24,7 +24,7 @@ const AnimatedNumber: React.FC<{ value: number; label: string }> = ({ value, lab
           </motion.span>
         </AnimatePresence>
       </div>
-      <p className="body-tiny mt-1 text-text-muted">{label}</p>
+      <p className="body-tiny mt-1 text-silver-dim">{label}</p>
     </div>
   );
 };
@@ -43,8 +43,8 @@ const DateSection: React.FC = () => {
       invitation.year,
       getMonthIndex(invitation.month),
       invitation.day,
-      21,
-      0,
+      20,
+      30,
       0
     );
 
@@ -95,10 +95,26 @@ const DateSection: React.FC = () => {
       </div>
 
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-40 sm:w-48 md:w-104" opacity={0.12} duration={55} />
+        <DiscoBall
+          className="w-32 sm:w-40 md:w-56 lg:w-104"
+          opacity={0.12}
+          duration={55}
+        />
       </div>
       <div className="absolute -left-12 sm:-left-16 md:-left-24 bottom-1/4 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-28 sm:w-32 md:w-48" opacity={0.08} duration={65} />
+        <DiscoBall
+          className="w-24 sm:w-28 md:w-36"
+          opacity={0.08}
+          duration={65}
+        />
+      </div>
+
+      {/* ─── DESTELLO METÁLICO ─── */}
+      <div className="absolute top-8 left-8 sm:top-12 sm:left-12 pointer-events-none opacity-15" aria-hidden="true" role="presentation">
+        <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" strokeDasharray="2 2" />
+        </svg>
       </div>
 
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" role="presentation">
@@ -121,7 +137,7 @@ const DateSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-text-muted">Fecha</span>
+              <span className="title-section text-silver">Fecha</span>
             </motion.div>
             <motion.div variants={scaleIn} className="mt-2">
               <span className="title-section text-text-secondary block tracking-[0.4em]">
@@ -143,17 +159,17 @@ const DateSection: React.FC = () => {
               <span className="title-section text-text-secondary">{invitation.year}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-4 flex items-center gap-3 sm:gap-4">
-              <span className="w-8 sm:w-12 h-px bg-line" />
+              <span className="w-8 sm:w-12 h-px bg-silver-dim" />
               <span className="body-small text-text-muted">
                 {invitation.dayOfWeek} · {invitation.time}
               </span>
-              <span className="w-8 sm:w-12 h-px bg-line" />
+              <span className="w-8 sm:w-12 h-px bg-silver-dim" />
             </motion.div>
           </div>
 
           <div className="flex-1 content-right md:mt-16">
             <motion.div variants={fadeInUp} className="text-right">
-              <span className="title-section text-text-muted block mb-4">Faltan</span>
+              <span className="title-section text-silver-dim block mb-4">Faltan</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex gap-4 sm:gap-6 md:gap-8 justify-end flex-wrap">
               <AnimatedNumber value={timeLeft.days} label="Días" />
@@ -162,7 +178,7 @@ const DateSection: React.FC = () => {
               <AnimatedNumber value={timeLeft.seconds} label="Seg" />
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex justify-end">
-              <div className="w-12 sm:w-16 h-px bg-line" />
+              <div className="w-12 sm:w-16 h-px bg-silver-dim" />
             </motion.div>
           </div>
         </div>

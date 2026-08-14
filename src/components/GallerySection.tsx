@@ -33,11 +33,23 @@ const GallerySection: React.FC = () => {
       </div>
 
       <div className="absolute -left-12 sm:-left-16 md:-left-24 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-32 sm:w-40 md:w-56" opacity={0.10} duration={55} />
+        <DiscoBall
+          className="w-24 sm:w-32 md:w-44"
+          opacity={0.10}
+          duration={55}
+        />
       </div>
 
+      {/* ─── ESTRELLA CHROME ─── */}
+      <div className="absolute top-8 right-8 sm:top-12 sm:right-12 pointer-events-none opacity-15" aria-hidden="true" role="presentation">
+        <svg className="w-8 h-8 sm:w-10 sm:h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2 L13.5 9.5 L21 11 L13.5 12.5 L12 20 L10.5 12.5 L3 11 L10.5 9.5 Z" />
+        </svg>
+      </div>
+
+      <SparkleSystem count={2} reflections={1} className="opacity-20" />
+
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" role="presentation">
-        <SparkleSystem count={3} reflections={1} className="opacity-25" />
         <motion.div
           className="absolute top-1/3 right-1/4 w-36 sm:w-48 h-36 sm:h-48 rounded-full border border-silver-dim opacity-15"
           animate={{ scale: [1, 1.02, 1], opacity: [0.1, 0.18, 0.1] }}
@@ -59,7 +71,7 @@ const GallerySection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.3, ease: EASING.OUT }}
-          className="title-section"
+          className="title-section text-silver"
         >
           Momentos
         </motion.h2>

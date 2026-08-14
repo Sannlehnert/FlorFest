@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
+import DiscoBall from './DiscoBall';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const EmotionalSection: React.FC = () => {
@@ -14,6 +15,32 @@ const EmotionalSection: React.FC = () => {
         <div className="absolute inset-0 bg-depth" />
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-linear-to-t from-silver/5 to-transparent" />
       </div>
+
+      <div className="absolute -left-12 sm:-left-16 bottom-1/4 pointer-events-none" aria-hidden="true" role="presentation">
+        <DiscoBall
+          className="w-24 sm:w-32 md:w-40"
+          opacity={0.05}
+          duration={60}
+        />
+      </div>
+
+      {/* ─── DESTELLO METÁLICO SUTIL ─── */}
+      <div className="absolute top-8 right-8 sm:top-12 sm:right-12 pointer-events-none opacity-10" aria-hidden="true" role="presentation">
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" strokeDasharray="2 2" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.2 }}
+        className="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full border border-silver-dim opacity-10 blur-sm pointer-events-none"
+        aria-hidden="true"
+        role="presentation"
+      />
 
       <motion.div
         initial="hidden"

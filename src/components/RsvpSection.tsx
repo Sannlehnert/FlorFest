@@ -21,13 +21,13 @@ const RsvpSection: React.FC = () => {
       transition: {
         duration: 0.5,
         delay: 0.2,
-        ease: 'easeInOut' as const,
+        ease: 'easeOut' as const,
       },
     },
   };
 
   return (
-    <section className="relative min-h-dvh flex-col items-center justify-center px-6 py-16 bg-background overflow-hidden will-change-transform">
+    <section className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-16 bg-background overflow-hidden will-change-transform">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-25" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -36,14 +36,23 @@ const RsvpSection: React.FC = () => {
       </div>
 
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-40 sm:w-48 md:w-64" opacity={0.10} duration={55} />
+        <DiscoBall
+          className="w-32 sm:w-40 md:w-56 lg:w-64"
+          opacity={0.10}
+          duration={55}
+        />
       </div>
       <div className="absolute -left-12 sm:-left-16 md:-left-24 bottom-1/3 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall className="w-28 sm:w-32 md:w-48" opacity={0.06} duration={65} />
+        <DiscoBall
+          className="w-24 sm:w-28 md:w-36"
+          opacity={0.06}
+          duration={65}
+        />
       </div>
 
+      <SparkleSystem count={1} reflections={0} className="opacity-30" />
+
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" role="presentation">
-        <SparkleSystem count={3} reflections={1} className="opacity-30" />
         <motion.div
           className="absolute top-1/4 right-1/4 w-40 sm:w-56 h-40 sm:h-56 rounded-full border border-silver-dim opacity-15"
           animate={{ scale: [1, 1.02, 1], opacity: [0.1, 0.18, 0.1] }}
@@ -64,26 +73,19 @@ const RsvpSection: React.FC = () => {
         className="relative z-10 max-w-2xl mx-auto text-center"
       >
         <motion.div variants={fadeInUp} className="flex justify-center mb-8">
-          <div className="w-8 sm:w-12 h-px bg-line" />
+          <div className="w-8 sm:w-12 h-px bg-silver-dim" />
         </motion.div>
 
-        <motion.h2
-          variants={scaleIn}
-          className="font-serif text-text-primary text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1]"
-          style={{ fontFamily: 'var(--font-serif)' }}
-        >
+        <motion.h2 variants={scaleIn} className="font-serif text-text-primary text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1]">
           ¿Venis?
         </motion.h2>
 
-        <motion.p
-          variants={fadeInUp}
-          className="body-large text-text-secondary mt-4 max-w-sm mx-auto"
-        >
+        <motion.p variants={fadeInUp} className="body-large text-text-secondary mt-4 max-w-sm mx-auto">
           {invitation.rsvpMessage}
         </motion.p>
 
         <motion.div variants={fadeInUp} className="flex justify-center my-8">
-          <div className="w-8 sm:w-12 h-px bg-line" />
+          <div className="w-8 sm:w-12 h-px bg-silver-dim" />
         </motion.div>
 
         <motion.button
@@ -101,9 +103,9 @@ const RsvpSection: React.FC = () => {
           className="mt-12 sm:mt-16 flex flex-col items-center gap-4"
         >
           <div className="relative flex items-center justify-center">
-            <div className="w-12 sm:w-16 h-px bg-line" />
+            <div className="w-12 sm:w-16 h-px bg-silver-dim" />
             <div className="absolute w-1.5 h-1.5 rounded-full bg-silver-dim" />
-            <div className="w-12 sm:w-16 h-px bg-line" />
+            <div className="w-12 sm:w-16 h-px bg-silver-dim" />
           </div>
           <p className="font-serif text-text-secondary text-base sm:text-lg md:text-xl tracking-[0.15em]">
             {invitation.fullName}
@@ -111,7 +113,7 @@ const RsvpSection: React.FC = () => {
           <p className="body-tiny text-text-muted tracking-[0.2em]">
             {invitation.year} · {invitation.eventName}
           </p>
-          <div className="w-6 sm:w-8 h-px bg-line mt-2" />
+          <div className="w-6 sm:w-8 h-px bg-silver-dim mt-2" />
         </motion.div>
       </motion.div>
     </section>
