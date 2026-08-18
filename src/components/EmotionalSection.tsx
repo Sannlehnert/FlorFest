@@ -2,13 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
+import SparkleSystem from './SparkleSystem';
+import ScrollIndicator from './ScrollIndicator';
+import FFMonogram from './FFMonogram';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const EmotionalSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.4, 0.3);
 
   return (
-    <section className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-16 bg-background overflow-hidden">
+    <section id="cierre" className="relative min-h-dvh flex flex-col items-center justify-center px-6 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-25" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -19,10 +22,12 @@ const EmotionalSection: React.FC = () => {
       <div className="absolute -left-12 sm:-left-16 bottom-1/4 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-24 sm:w-32 md:w-40"
-          opacity={0.05}
+          opacity={0.18}
           duration={60}
         />
       </div>
+
+      <SparkleSystem count={5} reflections={2} className="opacity-55" />
 
       {/* ─── DESTELLO METÁLICO SUTIL ─── */}
       <div className="absolute top-8 right-8 sm:top-12 sm:right-12 pointer-events-none opacity-10" aria-hidden="true" role="presentation">
@@ -59,13 +64,13 @@ const EmotionalSection: React.FC = () => {
         >
           {invitation.emotionalMessage}
         </motion.p>
-        <motion.div variants={fadeInUp} className="flex justify-center mt-10">
-          <div className="w-12 sm:w-16 h-px bg-line" />
-        </motion.div>
+        <FFMonogram className="mx-auto mt-8 w-24 sm:w-28" />
         <motion.p variants={fadeInUp} className="body-tiny text-text-muted mt-6 tracking-[0.3em]">
           — {invitation.fullName} · {invitation.eventName}
         </motion.p>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

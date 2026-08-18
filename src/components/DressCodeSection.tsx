@@ -3,14 +3,15 @@ import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
+import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
-import dressIllustration from '/images/dress-code/dress-illustration.png';
+import dressIllustration from '/images/dress-code/dress-illustration.webp';
 
 const DressCodeSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.08, 0.1);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="dress-code" className="relative min-h-dvh flex items-center justify-center px-4 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-20" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -20,7 +21,7 @@ const DressCodeSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.10}
+          opacity={0.20}
           duration={55}
         />
       </div>
@@ -66,12 +67,12 @@ const DressCodeSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver">Dress Code</span>
+              <span className="title-section text-chrome">Dress Code</span>
             </motion.div>
 
             <motion.div variants={scaleIn} className="mt-2">
               <span
-                className="block font-serif font-bold leading-[1.1] tracking-widest text-text-primary"
+                className="title-fashion block leading-[1.1]"
                 style={{
                   fontSize: 'clamp(3rem, 10vw, 5.5rem)',
                   fontFamily: 'var(--font-serif)',
@@ -102,6 +103,9 @@ const DressCodeSection: React.FC = () => {
                 alt="Ilustración de vestimenta elegante"
                 className="w-full h-full object-contain opacity-90"
                 loading="lazy"
+                decoding="async"
+                width="700"
+                height="1050"
                 aria-hidden="true"
               />
               <div className="absolute top-0 left-0 w-6 sm:w-8 h-px bg-line" />
@@ -110,6 +114,8 @@ const DressCodeSection: React.FC = () => {
           </motion.div>
         </div>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

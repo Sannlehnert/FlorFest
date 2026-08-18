@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
+import FFMonogram from './FFMonogram';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const RsvpSection: React.FC = () => {
@@ -27,7 +28,7 @@ const RsvpSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="confirmacion" className="relative min-h-dvh flex flex-col items-center justify-center px-6 py-16 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-25" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -76,8 +77,8 @@ const RsvpSection: React.FC = () => {
           <div className="w-8 sm:w-12 h-px bg-silver-dim" />
         </motion.div>
 
-        <motion.h2 variants={scaleIn} className="font-serif text-text-primary text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1]">
-          ¿Venis?
+        <motion.h2 variants={scaleIn} className="font-serif text-chrome text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1]">
+          ¿Venís?
         </motion.h2>
 
         <motion.p variants={fadeInUp} className="body-large text-text-secondary mt-4 max-w-sm mx-auto">
@@ -102,11 +103,7 @@ const RsvpSection: React.FC = () => {
           variants={closingVariants}
           className="mt-12 sm:mt-16 flex flex-col items-center gap-4"
         >
-          <div className="relative flex items-center justify-center">
-            <div className="w-12 sm:w-16 h-px bg-silver-dim" />
-            <div className="absolute w-1.5 h-1.5 rounded-full bg-silver-dim" />
-            <div className="w-12 sm:w-16 h-px bg-silver-dim" />
-          </div>
+          <FFMonogram className="w-16 sm:w-20" />
           <p className="font-serif text-text-secondary text-base sm:text-lg md:text-xl tracking-[0.15em]">
             {invitation.fullName}
           </p>

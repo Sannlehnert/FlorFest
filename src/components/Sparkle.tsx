@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 interface SparkleProps {
   className?: string;
+  style?: React.CSSProperties;
   size?: number;
   opacity?: number;
   duration?: number;
@@ -12,6 +13,7 @@ interface SparkleProps {
 
 const Sparkle: React.FC<SparkleProps> = ({
   className = '',
+  style,
   size = 2,
   opacity = 0.4,
   duration = 4,
@@ -22,6 +24,7 @@ const Sparkle: React.FC<SparkleProps> = ({
     <motion.div
       className={`absolute rounded-full pointer-events-none ${className}`}
       style={{
+        ...style,
         width: size,
         height: size,
         background: color,

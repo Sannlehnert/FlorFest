@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
+import { useCountdown } from '../data/countdown';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
+import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const AnimatedNumber: React.FC<{ value: number; label: string }> = ({ value, label }) => {
@@ -10,19 +12,12 @@ const AnimatedNumber: React.FC<{ value: number; label: string }> = ({ value, lab
   return (
     <div className="text-center">
       <div className="relative inline-block">
-        <AnimatePresence mode="wait">
-          <motion.span
-            key={formatted}
-            initial={{ opacity: 0, y: -10, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tabular-nums leading-none block will-change-transform will-change-opacity"
-            style={{ fontFamily: 'var(--font-serif)' }}
-          >
-            {formatted}
-          </motion.span>
-        </AnimatePresence>
+        <span
+          className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tabular-nums leading-none block"
+          style={{ fontFamily: 'var(--font-serif)' }}
+        >
+          {formatted}
+        </span>
       </div>
       <p className="body-tiny mt-1 text-silver-dim">{label}</p>
     </div>
@@ -31,63 +26,10 @@ const AnimatedNumber: React.FC<{ value: number; label: string }> = ({ value, lab
 
 const DateSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.08, 0.1);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const targetDate = new Date(
-      invitation.year,
-      getMonthIndex(invitation.month),
-      invitation.day,
-      20,
-      30,
-      0
-    );
-
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  function getMonthIndex(monthName: string): number {
-    const months: Record<string, number> = {
-      enero: 0,
-      febrero: 1,
-      marzo: 2,
-      abril: 3,
-      mayo: 4,
-      junio: 5,
-      julio: 6,
-      agosto: 7,
-      septiembre: 8,
-      octubre: 9,
-      noviembre: 10,
-      diciembre: 11,
-    };
-    return months[monthName.toLowerCase()] ?? 0;
-  }
+  const timeLeft = useCountdown();
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="fecha" className="relative min-h-dvh flex items-center justify-center px-4 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-20" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -97,7 +39,7 @@ const DateSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.12}
+          opacity={0.22}
           duration={55}
         />
       </div>
@@ -137,7 +79,7 @@ const DateSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver">Fecha</span>
+              <span className="title-section text-chrome">Fecha</span>
             </motion.div>
             <motion.div variants={scaleIn} className="mt-2">
               <span className="title-section text-text-secondary block tracking-[0.4em]">
@@ -183,6 +125,8 @@ const DateSection: React.FC = () => {
           </div>
         </div>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

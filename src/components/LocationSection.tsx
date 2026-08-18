@@ -3,8 +3,9 @@ import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
+import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
-import mapPinIcon from '/images/location/map-pin-icon.png';
+import mapPinIcon from '/images/location/map-pin-icon.webp';
 
 const LocationSection: React.FC = () => {
   const handleOpenMaps = () => {
@@ -14,7 +15,7 @@ const LocationSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.08, 0.1);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="ubicacion" className="relative min-h-dvh flex items-center justify-center px-4 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-20" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -24,7 +25,7 @@ const LocationSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.12}
+          opacity={0.24}
           duration={55}
         />
       </div>
@@ -57,9 +58,9 @@ const LocationSection: React.FC = () => {
           {/* ─── COLUMNA IZQUIERDA: INFORMACIÓN ─── */}
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver">Ubicación</span>
+              <span className="title-section text-chrome">Ubicación</span>
             </motion.div>
-            <motion.h3 variants={scaleIn} className="title-display-small text-text-primary mt-2">
+            <motion.h3 variants={scaleIn} className="title-display-small text-chrome mt-2">
               {invitation.location}
             </motion.h3>
 
@@ -104,11 +105,16 @@ const LocationSection: React.FC = () => {
               alt="Mapa de ubicación"
               className="w-full max-w-xs aspect-square object-contain opacity-80"
               loading="lazy"
+              decoding="async"
+              width="760"
+              height="790"
               aria-hidden="true"
             />
           </motion.div>
         </div>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

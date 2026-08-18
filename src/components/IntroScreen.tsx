@@ -62,8 +62,8 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         role="presentation"
       >
         <DiscoBall
-          className="w-40 sm:w-56 md:w-72 lg:w-lg"
-          opacity={0.15}
+          className="w-52 sm:w-64 md:w-80 lg:w-96"
+          opacity={0.38}
           duration={45}
         />
       </motion.div>
@@ -77,7 +77,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
       >
         <DiscoBall
           className="w-24 sm:w-32 md:w-40"
-          opacity={0.08}
+          opacity={0.18}
           duration={55}
         />
       </motion.div>
@@ -115,18 +115,19 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         <div className="absolute bottom-0 left-0 w-1/4 h-px bg-line transform -rotate-6 origin-bottom-left" />
       </motion.div>
 
-      <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
-          <div className="flex-1 content-left">
+      <div className="intro-content relative z-10 w-full max-w-6xl px-4 sm:px-6 md:px-12">
+        <div className="intro-grid flex flex-col md:flex-row md:items-start md:justify-between gap-5 md:gap-8">
+          <div className="intro-heading w-full md:flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
               <span className="title-section text-silver">It's my birthday</span>
             </motion.div>
             <motion.h1
               variants={scaleIn}
-              className="script-hero text-left leading-[0.9] tracking-tight"
+              className="intro-name script-hero text-left leading-[0.9] tracking-tight"
               style={{ fontFamily: 'var(--font-script)' }}
             >
-              {invitation.fullName}
+              <span className="block sm:inline">{invitation.name}</span>{' '}
+              <span className="block sm:inline">{invitation.lastName}</span>
             </motion.h1>
             <motion.div
               variants={fadeInUp}
@@ -134,12 +135,12 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
               className="mt-3 flex items-center gap-3 sm:gap-4"
             >
               <span className="w-8 sm:w-12 h-px bg-line" />
-              <span className="title-section text-silver">{invitation.eventName}</span>
+              <span className="title-balloon title-balloon-lg">{invitation.eventName}</span>
               <span className="w-8 sm:w-12 h-px bg-line" />
             </motion.div>
           </div>
 
-          <div className="flex-1 content-right md:mt-16">
+          <div className="intro-actions w-full md:flex-1 content-right md:mt-16">
             <motion.div variants={fadeInUp} className="text-right">
               <p className="body-large text-text-secondary">
                 {invitation.dayOfWeek} {invitation.day}

@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
+import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
-import giftImage from '/images/gifts/gif-box-illustration.png';
+import giftImage from '/images/gifts/gif-box-illustration.webp';
 
 const GiftSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -22,7 +23,7 @@ const GiftSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.15, 0.2);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="regalo" className="relative min-h-dvh flex items-center justify-center px-4 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-20" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -32,7 +33,7 @@ const GiftSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.10}
+          opacity={0.22}
           duration={55}
         />
       </div>
@@ -72,7 +73,7 @@ const GiftSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver">Regalo</span>
+              <span className="title-section text-chrome">Regalo</span>
             </motion.div>
 
             <motion.p variants={scaleIn} className="body-large text-text-primary mt-2">
@@ -129,12 +130,15 @@ const GiftSection: React.FC = () => {
           </div>
 
           <motion.div variants={scaleIn} className="flex-1 flex justify-center items-center mt-6 md:mt-0">
-            <div className="w-full max-w-xs aspect-square flex items-center justify-center relative">
+            <div className="asset-spotlight w-full max-w-xs aspect-square flex items-center justify-center relative">
               <img
                 src={giftImage}
                 alt="Regalo decorativo"
                 className="w-full h-full object-contain opacity-80"
                 loading="lazy"
+                decoding="async"
+                width="1100"
+                height="733"
                 aria-hidden="true"
               />
               <div className="absolute top-0 right-0 w-6 sm:w-8 h-px bg-line" />
@@ -143,6 +147,8 @@ const GiftSection: React.FC = () => {
           </motion.div>
         </div>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

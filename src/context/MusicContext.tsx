@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useRef, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import { invitation } from '../data/invitation';

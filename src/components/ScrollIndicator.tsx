@@ -1,13 +1,12 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useReducedMotion } from '../context/ReducedMotionContext';
 
-const ScrollIndicator: React.FC = () => {
-  const prefersReduced = useReducedMotion();
-  const { scrollY } = useScroll();
+interface ScrollIndicatorProps {
+  className?: string;
+}
 
-  // Desaparece después de scrollear 150px
-  const opacity = useTransform(scrollY, [0, 150], [1, 0]);
-  const y = useTransform(scrollY, [0, 150], [0, -20]);
+const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ className = '' }) => {
+  const prefersReduced = useReducedMotion();
 
   // Animación de "respiración" suave
   const breathe = prefersReduced
@@ -22,25 +21,20 @@ const ScrollIndicator: React.FC = () => {
       };
 
   return (
-    <motion.div
-      className="flex flex-col items-center gap-2 mt-8"
-      style={{ opacity, y }}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.6 }}
+    <div
+      className={`scroll-cue flex flex-col items-center gap-1.5 ${className}`}
+      aria-hidden="true"
     >
-      {/* Texto "SEGUÍ BAJANDO" con mayor opacidad */}
       <motion.span
-        className="body-tiny text-silver tracking-[0.25em]"
+        className="text-[0.58rem] sm:text-[0.62rem] font-medium text-silver tracking-[0.24em] uppercase whitespace-nowrap"
         animate={breathe}
         style={{ textShadow: '0 0 8px rgba(224,224,224,0.15)' }}
       >
         SEGUÍ BAJANDO
       </motion.span>
 
-      {/* Línea vertical + chevron */}
       <div className="relative flex flex-col items-center">
-        <div className="w-px h-8 bg-silver/30" />
+        <div className="w-px h-5 bg-silver/35" />
         <motion.div
           className="w-5 h-5 text-silver/70"
           animate={breathe}
@@ -58,7 +52,7 @@ const ScrollIndicator: React.FC = () => {
           </svg>
         </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -66,7 +66,7 @@ const Polaroid: React.FC<PolaroidProps> = ({
       }}
     >
       <div
-        className="relative bg-white p-1.5 rounded-sm"
+        className="polaroid-shell relative p-1.5 rounded-sm"
         style={{
           boxShadow:
             shadowIntensity === 'strong'
@@ -88,6 +88,9 @@ const Polaroid: React.FC<PolaroidProps> = ({
             loading={priority ? 'eager' : 'lazy'}
             decoding="async"
             fetchPriority={priority ? 'high' : 'low'}
+            sizes="(min-width: 768px) 24vw, 44vw"
+            width="720"
+            height="960"
             onLoad={handleLoad}
             onError={(e) => {
               const target = e.target as HTMLImageElement;

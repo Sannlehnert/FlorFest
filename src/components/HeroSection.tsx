@@ -1,71 +1,18 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
+import { useCountdown } from '../data/countdown';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
 import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const HeroSection: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const targetDate = new Date(
-      invitation.year,
-      getMonthIndex(invitation.month),
-      invitation.day,
-      20,
-      30,
-      0
-    );
-
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-
-      if (distance < 0) {
-        clearInterval(interval);
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  function getMonthIndex(monthName: string): number {
-    const months: Record<string, number> = {
-      enero: 0,
-      febrero: 1,
-      marzo: 2,
-      abril: 3,
-      mayo: 4,
-      junio: 5,
-      julio: 6,
-      agosto: 7,
-      septiembre: 8,
-      octubre: 9,
-      noviembre: 10,
-      diciembre: 11,
-    };
-    return months[monthName.toLowerCase()] ?? 0;
-  }
+  const timeLeft = useCountdown();
 
   const containerVariants = createStaggerContainer(0.08, 0.1);
 
   return (
-    <section className="relative min-h-dvh flex items-center justify-center px-4 py-16 bg-background overflow-hidden will-change-transform">
+    <section id="inicio" className="relative min-h-dvh flex items-center justify-center px-4 pt-16 pb-28 bg-background overflow-hidden invitation-section">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-noise opacity-20" />
         <div className="absolute inset-0 bg-ambient-light" />
@@ -75,14 +22,14 @@ const HeroSection: React.FC = () => {
       <div className="absolute -left-16 sm:-left-20 md:-left-32 top-1/2 -translate-y-1/2 pointer-events-none">
         <DiscoBall
           className="w-32 sm:w-44 md:w-56 lg:w-104"
-          opacity={0.15}
+          opacity={0.34}
           duration={50}
         />
       </div>
       <div className="absolute -right-12 sm:-right-16 md:-right-24 bottom-1/3 pointer-events-none">
         <DiscoBall
           className="w-24 sm:w-32 md:w-40"
-          opacity={0.10}
+          opacity={0.20}
           duration={60}
         />
       </div>
@@ -135,12 +82,13 @@ const HeroSection: React.FC = () => {
 
             <motion.div variants={fadeInUp} className="mt-4 flex items-center gap-3 sm:gap-4">
               <span className="w-8 sm:w-12 h-px bg-line" />
-              <span className="title-section text-silver">{invitation.eventName}</span>
+              <span className="title-balloon">{invitation.eventName}</span>
               <span className="w-8 sm:w-12 h-px bg-line" />
             </motion.div>
 
-            <motion.p variants={fadeInUp} className="body-small text-text-muted mt-3 max-w-md">
-              Una noche de brillo, música y celebración
+            <motion.p variants={fadeInUp} className="hero-tagline mt-4 max-w-md">
+              <span>Una noche de</span>{' '}
+              <em>brillo</em>, música y <strong>celebración</strong>
             </motion.p>
           </div>
 
@@ -183,12 +131,11 @@ const HeroSection: React.FC = () => {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeInUp} className="mt-8 flex justify-end">
-              <ScrollIndicator />
-            </motion.div>
           </div>
         </div>
       </motion.div>
+
+      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };
