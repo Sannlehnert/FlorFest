@@ -64,19 +64,22 @@ const GallerySection: React.FC = () => {
             transition={{ duration: 0.5, ease: EASING.OUT }}
             className="relative z-10 w-full max-w-5xl"
           >
-            <header className="content-center mb-8 sm:mb-10">
+            <header className={`content-center ${pageIndex === 0 ? 'mb-8 sm:mb-10' : 'mb-6'}`}>
               <p className="body-tiny text-silver-dim tracking-[0.32em] mb-2">
                 CAPÍTULO {String(pageIndex + 1).padStart(2, '0')}
               </p>
-              <h2
-                id={pageIndex === 0 ? 'moments-title' : undefined}
-                className="title-display-small text-chrome"
-              >
-                Momentos
-              </h2>
-              <p className="script-small mt-2 text-text-muted">
-                Recuerdos que también son parte de esta noche
-              </p>
+              {pageIndex === 0 ? (
+                <>
+                  <h2 id="moments-title" className="title-display-small text-chrome">
+                    Momentos
+                  </h2>
+                  <p className="script-small mt-2 text-text-muted">
+                    De mis primeros años hasta hoy
+                  </p>
+                </>
+              ) : (
+                <div className="mt-4 h-px w-16 bg-silver-dim/60" aria-hidden="true" />
+              )}
             </header>
 
             <div className="moments-collage">

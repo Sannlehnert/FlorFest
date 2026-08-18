@@ -1,14 +1,11 @@
 import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
-import { useCountdown } from '../data/countdown';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
 import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const HeroSection: React.FC = () => {
-  const timeLeft = useCountdown();
-
   const containerVariants = createStaggerContainer(0.08, 0.1);
 
   return (
@@ -29,7 +26,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute -right-12 sm:-right-16 md:-right-24 bottom-1/3 pointer-events-none">
         <DiscoBall
           className="w-24 sm:w-32 md:w-40"
-          opacity={0.20}
+          opacity={0.12}
           duration={60}
         />
       </div>
@@ -92,45 +89,15 @@ const HeroSection: React.FC = () => {
             </motion.p>
           </div>
 
-          <div className="flex-1 content-right md:mt-8">
-            <motion.div variants={fadeInUp} className="text-right">
-              <p className="body-large text-text-secondary">
-                {invitation.dayOfWeek} {invitation.day}
-              </p>
-              <p className="title-display-small text-text-primary mt-0">
-                {invitation.month}
-              </p>
-              <p className="body text-text-muted">{invitation.year}</p>
-              <p className="body-small text-text-muted mt-1">{invitation.time}</p>
+          <div className="flex-1 flex md:justify-end md:items-end">
+            <motion.div
+              variants={fadeInUp}
+              className="mt-8 md:mt-20 w-full max-w-xs border-t border-b border-white/15 py-5 md:text-right"
+              aria-label={`${invitation.day} de ${invitation.month} de ${invitation.year}, ${invitation.time}`}
+            >
+              <p className="title-section text-chrome">03 · 10 · 26</p>
+              <p className="body-small text-text-muted mt-2">20:30 HS · CENTENARIO</p>
             </motion.div>
-
-            <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex gap-4 sm:gap-6 md:gap-8 justify-end flex-wrap">
-              <div className="text-center">
-                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
-                  {String(timeLeft.days).padStart(2, '0')}
-                </span>
-                <p className="body-tiny mt-1 text-silver-dim">Días</p>
-              </div>
-              <div className="text-center">
-                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
-                  {String(timeLeft.hours).padStart(2, '0')}
-                </span>
-                <p className="body-tiny mt-1 text-silver-dim">Horas</p>
-              </div>
-              <div className="text-center">
-                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
-                  {String(timeLeft.minutes).padStart(2, '0')}
-                </span>
-                <p className="body-tiny mt-1 text-silver-dim">Min</p>
-              </div>
-              <div className="text-center">
-                <span className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary tabular-nums leading-none">
-                  {String(timeLeft.seconds).padStart(2, '0')}
-                </span>
-                <p className="body-tiny mt-1 text-silver-dim">Seg</p>
-              </div>
-            </motion.div>
-
           </div>
         </div>
       </motion.div>

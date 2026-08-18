@@ -39,34 +39,13 @@ const DateSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.22}
+          opacity={0.14}
           duration={55}
         />
       </div>
-      <div className="absolute -left-12 sm:-left-16 md:-left-24 bottom-1/4 pointer-events-none" aria-hidden="true" role="presentation">
-        <DiscoBall
-          className="w-24 sm:w-28 md:w-36"
-          opacity={0.08}
-          duration={65}
-        />
-      </div>
-
-      {/* ─── DESTELLO METÁLICO ─── */}
-      <div className="absolute top-8 left-8 sm:top-12 sm:left-12 pointer-events-none opacity-15" aria-hidden="true" role="presentation">
-        <svg className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" strokeDasharray="2 2" />
-        </svg>
-      </div>
 
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true" role="presentation">
-        <SparkleSystem count={3} reflections={1} className="opacity-30" />
-        <motion.div
-          className="absolute top-1/3 left-1/4 w-40 sm:w-56 h-40 sm:h-56 rounded-full border border-silver-dim opacity-20"
-          animate={{ scale: [1, 1.02, 1], opacity: [0.15, 0.25, 0.15] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <div className="absolute top-0 right-0 w-1/4 sm:w-1/3 h-px bg-line transform rotate-6 origin-top-right opacity-30" />
+        <SparkleSystem count={2} reflections={0} className="opacity-20" />
       </div>
 
       <motion.div
@@ -109,17 +88,17 @@ const DateSection: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="flex-1 content-right md:mt-16">
-            <motion.div variants={fadeInUp} className="text-right">
+          <div className="flex-1 flex flex-col items-start text-left md:items-end md:text-right md:mt-16">
+            <motion.div variants={fadeInUp}>
               <span className="title-section text-silver-dim block mb-4">Faltan</span>
             </motion.div>
-            <motion.div variants={fadeInUp} className="flex gap-4 sm:gap-6 md:gap-8 justify-end flex-wrap">
+            <motion.div variants={fadeInUp} className="flex gap-4 sm:gap-6 md:gap-8 justify-start md:justify-end flex-wrap">
               <AnimatedNumber value={timeLeft.days} label="Días" />
               <AnimatedNumber value={timeLeft.hours} label="Horas" />
               <AnimatedNumber value={timeLeft.minutes} label="Min" />
               <AnimatedNumber value={timeLeft.seconds} label="Seg" />
             </motion.div>
-            <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex justify-end">
+            <motion.div variants={fadeInUp} className="mt-6 sm:mt-8 flex justify-start md:justify-end">
               <div className="w-12 sm:w-16 h-px bg-silver-dim" />
             </motion.div>
           </div>

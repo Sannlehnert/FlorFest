@@ -90,7 +90,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         aria-hidden="true"
         role="presentation"
       >
-        <SparkleSystem count={6} reflections={3} className="opacity-70" />
+        <SparkleSystem count={4} reflections={1} className="opacity-60" />
       </motion.div>
 
       <motion.div
@@ -119,7 +119,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ onEnter }) => {
         <div className="intro-grid flex flex-col md:flex-row md:items-start md:justify-between gap-5 md:gap-8">
           <div className="intro-heading w-full md:flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver">It's my birthday</span>
+              <span className="title-section text-silver">Mis XV · 2026</span>
             </motion.div>
             <motion.h1
               variants={scaleIn}

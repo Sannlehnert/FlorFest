@@ -50,15 +50,15 @@ export const invitation: InvitationData = {
 
   // ─── REGALO ───
   giftAlias: "florenciaa.mp3",
-  giftMessage: "El mejor regalo es tu presencia… pero si deseas dejarme un obsequio, dejo mis datos",
+  giftMessage: "Si además querés hacerme un regalo, podés encontrar mis datos acá.",
 
   // ─── WHATSAPP ───
   whatsappNumber: "5492995354680",
   whatsappMessage: "Hola Flor! Quiero confirmar mi asistencia a tus 15 años. ¡Voy! ❤️",
 
   // ─── TEXTOS DE LA INVITACIÓN ───
-  rsvpMessage: "Quiero festejar mis xv bailando hasta el amanecer con la gente que más quiero. ¿venís?",
-  emotionalMessage: "Gracias por ser parte de mi vida y acompañarme en este camino lleno de ilusión",
+  rsvpMessage: "Quiero festejar mis XV bailando hasta el amanecer con la gente que más quiero.",
+  emotionalMessage: "Gracias por ser parte de mi vida y acompañarme en este camino lleno de ilusión.",
 
   // ─── MÚSICA ───
   music: {

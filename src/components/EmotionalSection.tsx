@@ -27,7 +27,7 @@ const EmotionalSection: React.FC = () => {
         />
       </div>
 
-      <SparkleSystem count={5} reflections={2} className="opacity-55" />
+      <SparkleSystem count={2} reflections={1} className="opacity-35" />
 
       {/* ─── DESTELLO METÁLICO SUTIL ─── */}
       <div className="absolute top-8 right-8 sm:top-12 sm:right-12 pointer-events-none opacity-10" aria-hidden="true" role="presentation">

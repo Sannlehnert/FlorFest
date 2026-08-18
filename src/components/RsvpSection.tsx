@@ -91,10 +91,10 @@ const RsvpSection: React.FC = () => {
 
         <motion.button
           variants={scaleIn}
-          whileHover={{ scale: 1.04, backgroundColor: 'rgba(255,255,255,0.2)' }}
+          whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleConfirm}
-          className="px-10 py-5 min-h-14 bg-white/15 border-2 border-white/50 rounded-full text-text-primary text-base font-semibold tracking-[0.15em] uppercase transition-colors duration-200 touch-manipulation focus:outline-none focus:ring-2 focus:ring-silver-dim focus:ring-offset-2 focus:ring-offset-background w-full sm:w-auto"
+          className="px-10 py-5 min-h-14 bg-white text-black border border-white rounded-full text-base font-semibold tracking-[0.15em] uppercase transition-all duration-200 touch-manipulation shadow-[0_10px_40px_rgba(255,255,255,0.08)] focus:outline-none focus:ring-2 focus:ring-silver-dim focus:ring-offset-2 focus:ring-offset-background w-full sm:w-auto"
         >
           Confirmar asistencia
         </motion.button>

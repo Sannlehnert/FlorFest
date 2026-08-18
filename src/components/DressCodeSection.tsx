@@ -5,7 +5,7 @@ import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
 import ScrollIndicator from './ScrollIndicator';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
-import dressIllustration from '/images/dress-code/dress-illustration.webp';
+import dressIllustration from '/images/dress-code/dress-code-cutout.webp';
 
 const DressCodeSection: React.FC = () => {
   const containerVariants = createStaggerContainer(0.08, 0.1);
@@ -83,12 +83,12 @@ const DressCodeSection: React.FC = () => {
             </motion.div>
 
             <motion.p variants={fadeInUp} className="body-small text-text-muted mt-4 max-w-xs">
-              Vístete para brillar esta noche
+              Tu estilo, en modo fiesta
             </motion.p>
 
             <motion.div variants={fadeInUp} className="mt-6 flex items-center gap-3 sm:gap-4">
               <span className="w-8 sm:w-12 h-px bg-silver-dim" />
-              <span className="body-tiny text-text-muted">ELEGANCIA · GLAMOUR · BRILLO</span>
+              <span className="body-tiny text-text-muted">NOCHE · BRILLO · ACTITUD</span>
               <span className="w-8 sm:w-12 h-px bg-silver-dim" />
             </motion.div>
           </div>
@@ -104,8 +104,8 @@ const DressCodeSection: React.FC = () => {
                 className="w-full h-full object-contain opacity-90"
                 loading="lazy"
                 decoding="async"
-                width="700"
-                height="1050"
+                width="900"
+                height="1080"
                 aria-hidden="true"
               />
               <div className="absolute top-0 left-0 w-6 sm:w-8 h-px bg-line" />
