@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
-import FFMonogram from './FFMonogram';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const RsvpSection: React.FC = () => {
@@ -77,7 +76,7 @@ const RsvpSection: React.FC = () => {
           <div className="w-8 sm:w-12 h-px bg-silver-dim" />
         </motion.div>
 
-        <motion.h2 variants={scaleIn} className="font-serif text-chrome text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1]">
+        <motion.h2 variants={scaleIn} className="section-display text-chrome">
           ¿Venís?
         </motion.h2>
 
@@ -103,8 +102,7 @@ const RsvpSection: React.FC = () => {
           variants={closingVariants}
           className="mt-12 sm:mt-16 flex flex-col items-center gap-4"
         >
-          <FFMonogram className="w-16 sm:w-20" />
-          <p className="font-serif text-text-secondary text-base sm:text-lg md:text-xl tracking-[0.15em]">
+          <p className="editorial-caption text-text-secondary tracking-[0.15em]">
             {invitation.fullName}
           </p>
           <p className="body-tiny text-text-muted tracking-[0.2em]">

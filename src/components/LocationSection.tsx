@@ -58,7 +58,7 @@ const LocationSection: React.FC = () => {
           {/* ─── COLUMNA IZQUIERDA: INFORMACIÓN ─── */}
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-chrome">Ubicación</span>
+              <span className="eyebrow text-silver-dim">Ubicación</span>
             </motion.div>
             <motion.h3 variants={scaleIn} className="title-display-small text-chrome mt-2">
               {invitation.location}
@@ -114,7 +114,7 @@ const LocationSection: React.FC = () => {
         </div>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

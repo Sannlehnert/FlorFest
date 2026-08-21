@@ -16,17 +16,18 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-depth" />
       </div>
 
-      <div className="absolute -left-16 sm:-left-20 md:-left-32 top-1/2 -translate-y-1/2 pointer-events-none">
+      <div className="absolute -left-16 top-[24%] pointer-events-none sm:-left-20 md:-left-24 md:top-1/2 md:-translate-y-1/2">
         <DiscoBall
-          className="w-32 sm:w-44 md:w-56 lg:w-104"
-          opacity={0.34}
+          className="w-36 sm:w-48 md:w-60 lg:w-80"
+          opacity={0.42}
           duration={50}
+          priority
         />
       </div>
-      <div className="absolute -right-12 sm:-right-16 md:-right-24 bottom-1/3 pointer-events-none">
+      <div className="absolute -right-10 top-12 pointer-events-none sm:-right-12 md:-right-20 md:top-auto md:bottom-1/3">
         <DiscoBall
           className="w-24 sm:w-32 md:w-40"
-          opacity={0.12}
+          opacity={0.18}
           duration={60}
         />
       </div>
@@ -55,26 +56,22 @@ const HeroSection: React.FC = () => {
         variants={containerVariants}
         className="relative z-10 container-invitation"
       >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-8">
-          <div className="flex-1 content-left">
-            <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-silver-dim">Celebramos</span>
-            </motion.div>
-
-            <motion.h1 variants={scaleIn} className="script-hero text-left leading-[0.9] tracking-tight">
+        <div className="hero-layout flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12">
+          <div className="hero-copy flex-1 content-left">
+            <motion.h1 variants={scaleIn} className="editorial-hero text-left">
               {invitation.fullName}
             </motion.h1>
 
             <motion.div
               variants={fadeInUp}
               transition={{ delay: 0.1 }}
-              className="mt-3 flex flex-col items-start gap-1"
+              className="hero-xv-wrap mt-4 flex flex-col items-start gap-1.5"
             >
-              <div className="w-12 h-px bg-silver-dim/60" />
-              <span className="font-serif text-silver text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.3em] uppercase leading-[1.2]">
+              <div className="w-12 h-px bg-silver-dim/55" />
+              <span className="hero-xv">
                 MIS XV
               </span>
-              <div className="w-12 h-px bg-silver-dim/60" />
+              <div className="w-12 h-px bg-silver-dim/55" />
             </motion.div>
 
             <motion.div variants={fadeInUp} className="mt-4 flex items-center gap-3 sm:gap-4">
@@ -83,26 +80,27 @@ const HeroSection: React.FC = () => {
               <span className="w-8 sm:w-12 h-px bg-line" />
             </motion.div>
 
-            <motion.p variants={fadeInUp} className="hero-tagline mt-4 max-w-md">
-              <span>Una noche de</span>{' '}
-              <em>brillo</em>, música y <strong>celebración</strong>
+            <motion.p variants={fadeInUp} className="hero-tagline mt-5 max-w-md">
+              Una noche de brillo, música y celebración
             </motion.p>
           </div>
 
-          <div className="flex-1 flex md:justify-end md:items-end">
+          <div className="hero-date-column flex-1 flex md:justify-end md:items-end">
             <motion.div
               variants={fadeInUp}
-              className="mt-8 md:mt-20 w-full max-w-xs border-t border-b border-white/15 py-5 md:text-right"
+              className="hero-date-card mt-3 w-full max-w-xs border-y border-white/15 py-5 md:mt-20 md:text-right"
               aria-label={`${invitation.day} de ${invitation.month} de ${invitation.year}, ${invitation.time}`}
             >
-              <p className="title-section text-chrome">03 · 10 · 26</p>
-              <p className="body-small text-text-muted mt-2">20:30 HS · CENTENARIO</p>
+              <p className="eyebrow text-silver-dim">La cita</p>
+              <p className="hero-date-day text-chrome">{String(invitation.day).padStart(2, '0')}</p>
+              <p className="hero-date-month">{invitation.month} · {invitation.year}</p>
+              <p className="body-small text-text-muted mt-3">{invitation.time} · {invitation.location}</p>
             </motion.div>
           </div>
         </div>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

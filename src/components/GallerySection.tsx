@@ -65,15 +65,12 @@ const GallerySection: React.FC = () => {
             className="relative z-10 w-full max-w-5xl"
           >
             <header className={`content-center ${pageIndex === 0 ? 'mb-8 sm:mb-10' : 'mb-6'}`}>
-              <p className="body-tiny text-silver-dim tracking-[0.32em] mb-2">
-                CAPÍTULO {String(pageIndex + 1).padStart(2, '0')}
-              </p>
               {pageIndex === 0 ? (
                 <>
                   <h2 id="moments-title" className="title-display-small text-chrome">
                     Momentos
                   </h2>
-                  <p className="script-small mt-2 text-text-muted">
+                  <p className="editorial-caption mt-2 text-text-muted">
                     De mis primeros años hasta hoy
                   </p>
                 </>
@@ -115,7 +112,7 @@ const GallerySection: React.FC = () => {
             </div>
           </motion.div>
 
-          <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+          <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
         </div>
       ))}
     </section>

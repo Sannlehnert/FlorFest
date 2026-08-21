@@ -12,10 +12,7 @@ const AnimatedNumber: React.FC<{ value: number; label: string }> = ({ value, lab
   return (
     <div className="text-center">
       <div className="relative inline-block">
-        <span
-          className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary tabular-nums leading-none block"
-          style={{ fontFamily: 'var(--font-serif)' }}
-        >
+        <span className="countdown-number">
           {formatted}
         </span>
       </div>
@@ -58,26 +55,20 @@ const DateSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-8">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-chrome">Fecha</span>
+              <span className="eyebrow text-silver-dim">La fecha</span>
             </motion.div>
             <motion.div variants={scaleIn} className="mt-2">
-              <span className="title-section text-text-secondary block tracking-[0.4em]">
+              <span className="date-month">
                 {invitation.month.toUpperCase()}
               </span>
             </motion.div>
             <motion.div variants={scaleIn}>
-              <span
-                className="block font-serif font-bold leading-[0.9] tracking-tight text-text-primary"
-                style={{
-                  fontSize: 'clamp(4rem, 18vw, 12rem)',
-                  fontFamily: 'var(--font-serif)',
-                }}
-              >
+              <span className="date-day">
                 {invitation.day}
               </span>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-1">
-              <span className="title-section text-text-secondary">{invitation.year}</span>
+              <span className="eyebrow text-text-secondary">{invitation.year}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-4 flex items-center gap-3 sm:gap-4">
               <span className="w-8 sm:w-12 h-px bg-silver-dim" />
@@ -90,7 +81,7 @@ const DateSection: React.FC = () => {
 
           <div className="flex-1 flex flex-col items-start text-left md:items-end md:text-right md:mt-16">
             <motion.div variants={fadeInUp}>
-              <span className="title-section text-silver-dim block mb-4">Faltan</span>
+              <span className="eyebrow text-silver-dim block mb-4">Faltan</span>
             </motion.div>
             <motion.div variants={fadeInUp} className="flex gap-4 sm:gap-6 md:gap-8 justify-start md:justify-end flex-wrap">
               <AnimatedNumber value={timeLeft.days} label="Días" />
@@ -105,7 +96,7 @@ const DateSection: React.FC = () => {
         </div>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

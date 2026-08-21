@@ -4,7 +4,6 @@ import { invitation } from '../data/invitation';
 import DiscoBall from './DiscoBall';
 import SparkleSystem from './SparkleSystem';
 import ScrollIndicator from './ScrollIndicator';
-import FFMonogram from './FFMonogram';
 import { fadeInUp, scaleIn, createStaggerContainer } from '../animations/variants';
 
 const EmotionalSection: React.FC = () => {
@@ -57,20 +56,15 @@ const EmotionalSection: React.FC = () => {
         <motion.div variants={fadeInUp} className="flex justify-center mb-8">
           <div className="w-8 sm:w-12 h-px bg-line" />
         </motion.div>
-        <motion.p
-          variants={scaleIn}
-          className="font-serif text-text-primary text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed tracking-wide"
-          style={{ fontFamily: 'var(--font-serif)' }}
-        >
+        <motion.p variants={scaleIn} className="quote-editorial text-text-primary">
           {invitation.emotionalMessage}
         </motion.p>
-        <FFMonogram className="mx-auto mt-8 w-24 sm:w-28" />
         <motion.p variants={fadeInUp} className="body-tiny text-text-muted mt-6 tracking-[0.3em]">
           — {invitation.fullName} · {invitation.eventName}
         </motion.p>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

@@ -21,7 +21,7 @@ const DressCodeSection: React.FC = () => {
       <div className="absolute -right-16 sm:-right-20 md:-right-32 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" role="presentation">
         <DiscoBall
           className="w-32 sm:w-40 md:w-56 lg:w-104"
-          opacity={0.20}
+          opacity={0.13}
           duration={55}
         />
       </div>
@@ -67,17 +67,11 @@ const DressCodeSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 md:gap-12">
           <div className="flex-1 content-left">
             <motion.div variants={fadeInUp} className="mb-2">
-              <span className="title-section text-chrome">Dress Code</span>
+              <span className="eyebrow text-silver-dim">Dress code</span>
             </motion.div>
 
             <motion.div variants={scaleIn} className="mt-2">
-              <span
-                className="title-fashion block leading-[1.1]"
-                style={{
-                  fontSize: 'clamp(3rem, 10vw, 5.5rem)',
-                  fontFamily: 'var(--font-serif)',
-                }}
-              >
+              <span className="title-fashion block">
                 {invitation.dressCode}
               </span>
             </motion.div>
@@ -97,11 +91,11 @@ const DressCodeSection: React.FC = () => {
             variants={scaleIn}
             className="flex-1 flex justify-center items-center mt-6 md:mt-0"
           >
-            <div className="w-full max-w-xs md:max-w-sm aspect-4/5 flex items-center justify-center relative">
+            <div className="dress-asset w-full max-w-xs md:max-w-sm aspect-4/5 flex items-center justify-center relative">
               <img
                 src={dressIllustration}
                 alt="Ilustración de vestimenta elegante"
-                className="w-full h-full object-contain opacity-90"
+                className="w-full h-full object-contain opacity-100 drop-shadow-[0_22px_30px_rgba(0,0,0,0.65)]"
                 loading="lazy"
                 decoding="async"
                 width="900"
@@ -115,7 +109,7 @@ const DressCodeSection: React.FC = () => {
         </div>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };

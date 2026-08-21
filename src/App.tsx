@@ -12,15 +12,14 @@ import GallerySection from './components/GallerySection';
 import EmotionalSection from './components/EmotionalSection';
 import RsvpSection from './components/RsvpSection';
 import MusicPlayer from './components/MusicPlayer';
-import MusicFloatingButton from './components/MusicFloatingButton';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [showContent, setShowContent] = useState(false);
 
   const handleEnter = () => {
+    setShowContent(true);
     setShowIntro(false);
-    setTimeout(() => setShowContent(true), 200);
   };
 
   return (
@@ -32,26 +31,26 @@ function App() {
           <div className="bg-depth" />
         </div>
 
-        <div className="relative z-10 min-h-screen bg-background text-white will-change-transform">
+        <div className="relative z-10 min-h-screen bg-background text-white">
           <AnimatePresence mode="wait">
             {showIntro && <IntroScreen key="intro" onEnter={handleEnter} />}
           </AnimatePresence>
 
           {showContent && (
             <>
-              <HeroSection />
-              <DateSection />
-              <LocationSection />
-              <DressCodeSection />
-              <GiftSection />
-              <GallerySection />
-              <EmotionalSection />
-              <RsvpSection />
+              <main>
+                <HeroSection />
+                <DateSection />
+                <LocationSection />
+                <DressCodeSection />
+                <GiftSection />
+                <GallerySection />
+                <EmotionalSection />
+                <RsvpSection />
+              </main>
+              <MusicPlayer />
             </>
           )}
-
-          <MusicPlayer />
-          <MusicFloatingButton />
         </div>
       </MusicProvider>
     </ReducedMotionProvider>

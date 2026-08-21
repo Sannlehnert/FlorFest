@@ -42,12 +42,12 @@ const GiftSection: React.FC = () => {
         className="relative z-10 w-full max-w-4xl"
       >
         <motion.div variants={fadeInUp} className="mb-3">
-          <span className="title-section text-chrome">Regalo</span>
+          <span className="eyebrow text-silver-dim">Regalo</span>
         </motion.div>
 
         <div className="grid gap-8 md:grid-cols-[1fr_1.05fr] md:items-end">
           <div>
-            <motion.h2 variants={scaleIn} className="font-serif text-chrome text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
+            <motion.h2 variants={scaleIn} className="section-display text-chrome">
               Tu presencia<br />es lo más importante
             </motion.h2>
             <motion.p variants={fadeInUp} className="body text-text-muted mt-5 max-w-md">
@@ -64,7 +64,7 @@ const GiftSection: React.FC = () => {
               className="relative mt-3 flex w-full items-center justify-between gap-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-silver-dim"
               aria-label="Copiar alias al portapapeles"
             >
-              <span className="font-serif text-2xl sm:text-3xl text-text-primary break-all">{invitation.giftAlias}</span>
+              <span className="editorial-data break-all">{invitation.giftAlias}</span>
               <span className="shrink-0 rounded-full border border-white/25 p-3" aria-hidden="true">
                 <svg className="w-4 h-4 text-silver" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -89,7 +89,7 @@ const GiftSection: React.FC = () => {
         </div>
       </motion.div>
 
-      <ScrollIndicator className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2" />
+      <ScrollIndicator className="scroll-cue-position absolute left-1/2 z-20 -translate-x-1/2" />
     </section>
   );
 };
